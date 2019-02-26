@@ -1,0 +1,17 @@
+
+table.table {
+    & td, & th {
+        border: none;
+    }
+
+    tr {
+        border: 1px solid $dark;
+        border-width: 0 0 1px;
+    }
+
+    & .xp,
+    & .xp strong,
+    & .discriminator {
+        color: $grey;
+    }
+}

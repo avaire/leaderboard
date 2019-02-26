@@ -1,0 +1,24 @@
+
+html, body {
+    background-color: $body-background-color;
+    font-family: $font-family-sans-serif;
+    color: $white;
+}
+
+.content {
+    & h1, & h2, & h3, & h4, & h5, & h6, & p, & strong {
+        color: $white;
+    }
+}
+
+a {
+    color: $primary;
+
+    &:hover, &:focus {
+        color: lighten($primary, 20%);
+    }
+}
+
+footer.footer {
+    background-color: $dark;
+}
