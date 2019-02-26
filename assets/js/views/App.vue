@@ -55,11 +55,17 @@
 </template>
 
 <script>
+    import config from '../config';
     import PlayerExperienceTableRow from './PlayerExperienceTableRow';
 
     export default {
         mounted() {
-            axios(`https://api.avairebot.com/v1/leaderboard/284083636368834561`).then(response => {
+            let endpoint = config.interalApi;
+            if (endpoint.substr(endpoint.length - 1, 1) == '/') {
+                endpoint = endpoint.substr(0, endpoint.length - 1);
+            }
+
+            axios(`${endpoint}/leaderboard/${config.serverId}`).then(response => {
                 if (response.status == 200) {
                     this.name = response.data.name;
                     this.enabled = response.data.enabled;
