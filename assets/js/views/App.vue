@@ -40,6 +40,12 @@
                     </div>
                 </div>
 
+                <div class="columns">
+                    <div class="column has-text-centered">
+                        <p class="update-counter">Automatically updating the leaderboard in <strong>{{ updatesIn }}</strong> seconds.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -60,21 +66,14 @@
 
     export default {
         mounted() {
-            let endpoint = config.interalApi;
-            if (endpoint.substr(endpoint.length - 1, 1) == '/') {
-                endpoint = endpoint.substr(0, endpoint.length - 1);
-            }
+            this.updateLeaderboard();
 
-            axios(`${endpoint}/leaderboard/${config.serverId}`).then(response => {
-                if (response.status == 200) {
-                    this.name = response.data.name;
-                    this.enabled = response.data.enabled;
-                    this.modifier = response.data.modifier;
-                    this.leaderboard = response.data.leaderboard;
+            setInterval(() => {
+                if (--this.updatesIn <= 0) {
+                    this.updateLeaderboard();
+                    this.updatesIn = config.updateRate;
                 }
-
-                this.isLoading = false;
-            }).catch(error => this.$router.push({ name: 'home' }));
+            }, 1000);
         },
         data() {
             return {
@@ -84,6 +83,7 @@
                 leaderboard: [],
                 isLoading: true,
                 isError: false,
+                updatesIn: config.updateRate,
             };
         },
         computed: {
@@ -96,6 +96,25 @@
                 }
                 return leaderboardUsers;
             }
+        },
+        methods: {
+            updateLeaderboard() {
+                let endpoint = config.interalApi;
+                if (endpoint.substr(endpoint.length - 1, 1) == '/') {
+                    endpoint = endpoint.substr(0, endpoint.length - 1);
+                }
+
+                axios(`${endpoint}/leaderboard/${config.serverId}`).then(response => {
+                    if (response.status == 200) {
+                        this.name = response.data.name;
+                        this.enabled = response.data.enabled;
+                        this.modifier = response.data.modifier;
+                        this.leaderboard = response.data.leaderboard;
+                    }
+
+                    this.isLoading = false;
+                }).catch(error => this.$router.push({ name: 'home' }));
+            },
         },
         components: {
             PlayerExperienceTableRow
