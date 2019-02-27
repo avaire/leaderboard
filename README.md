@@ -3,6 +3,8 @@ AvaIre Leaderboard
 
 AvaIre Leaderboard is a small stateless web app that can be used by people who self-host [AvaIre](https://github.com/avaire/avaire) to quickly and easily set up a web leaderboard for their server, the leaderboard will show the top 100 people for the server defined in the `config.js` file, along with their progress, current XP, and total XP.
 
+You can see an example of the leaderboaord at [leaderboard-example.avairebot.com](https://leaderboard-example.avairebot.com/).
+
 ## Getting Started
 
 AvaIre Leaderboard is built using [VueJS](https://vuejs.org/), [SASS](https://sass-lang.com/), and [Laravel Mix](https://laravel-mix.com/), to host the leaderboard, make sure that both [NodeJS](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/) is installed in order to transpile the assets so the application can run.
