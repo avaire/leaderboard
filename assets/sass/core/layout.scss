@@ -19,6 +19,24 @@ a {
     }
 }
 
+p.update-counter {
+    color: $grey;
+    transition: color 0.5s;
+
+    & strong {
+        color: rgba($primary, 80%);
+        transition: color 0.5s;
+    }
+
+    &:hover {
+        color: $grey-light;
+
+        & strong {
+            color: $primary;
+        }
+    }
+}
+
 footer.footer {
     background-color: $dark;
 }
