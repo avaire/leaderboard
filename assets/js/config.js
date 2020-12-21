@@ -6,7 +6,7 @@ export default {
      * you can use the IP of the server the bot is hosted on combined with
      * the port defined in the config for the API.
      */
-    interalApi: 'http://localhost:1256',
+    interalApi: 'https://api.avairebot.com/v1',
 
     /**
      * This is the ID of the server that the
